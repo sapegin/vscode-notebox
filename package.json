@@ -1,0 +1,102 @@
+{
+  "name": "notebox",
+  "displayName": "Notebox",
+  "description": "Take quick notes in the panel",
+  "keywords": [
+    "notes",
+    "notepad",
+    "notebook",
+    "scratchpad",
+    "panel",
+    "writing",
+    "notebox"
+  ],
+  "version": "0.0.1",
+  "publisher": "sapegin",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "homepage": "https://github.com/sapegin/vscode-notebox",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sapegin/vscode-notebox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sapegin/vscode-notebox/issues"
+  },
+  "sponsor": {
+    "url": "https://www.buymeacoffee.com/sapegin"
+  },
+  "galleryBanner": {
+    "color": "#daf9f9"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited"
+    }
+  },
+  "contributes": {
+    "viewsContainers": {
+      "panel": [
+        {
+          "id": "notebox",
+          "title": "notebox",
+          "icon": "$(note)"
+        }
+      ]
+    },
+    "views": {
+      "notebox": [
+        {
+          "type": "webview",
+          "id": "notebox.noteboxView",
+          "name": "notebox"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "rm -rf out && npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "watch": "npm run esbuild-watch",
+    "lint": "eslint . --ext .js,.ts,.tsx --cache --fix",
+    "format": "prettier --log-level warn --write \"**/*.{js,ts,tsx,md}\"",
+    "pretest": "npm run lint",
+    "test": "npm run esbuild-base && tsc --noEmit",
+    "posttest": "npm run format",
+    "publish": "vsce publish",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "@vscode/vsce": "^2.26.1",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "eslint-config-tamia": "^8.1.3",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "mkdirp": "^3.0.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,md}": "prettier --write",
+    "*.{js,ts,tsx}": "eslint --cache --fix"
+  }
+}
