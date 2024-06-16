@@ -49,7 +49,7 @@
       "panel": [
         {
           "id": "notebox",
-          "title": "notebox",
+          "title": "Notes",
           "icon": "$(note)"
         }
       ]
