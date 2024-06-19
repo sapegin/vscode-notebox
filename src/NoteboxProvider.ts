@@ -52,11 +52,11 @@ export default class NoteboxProvider implements WebviewViewProvider {
       }
     });
 
-    // Set the textarea value when the panel get focus
-    // This method is called on many other occasions (when the panel looses focus,
-    // and so on) but there's no way to filter it
     webviewView.onDidChangeVisibility(() => {
-      this.setTextareaValue(this.value);
+      // Set the textarea value when the panel gets focus
+      if (webviewView.visible) {
+        this.setTextareaValue(this.value);
+      }
     });
   }
 
