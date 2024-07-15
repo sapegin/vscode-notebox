@@ -18,7 +18,7 @@ The changelog can be found on the [Changelog.md](./Changelog.md) file.
 
 ## Motivation
 
-There are several extensions for writing notes inside VS Code but all are either to complex, or not working at all. I wanted something simple, a place to write a short reminder for myself, or store a piece of text or code that will be useful later.
+There are several extensions for writing notes inside VS Code, but all are either too complex, or not working at all. I wanted something simple, a place to write a short reminder for myself, or store a piece of text or code that will be useful later.
 
 ## You may also like
 
