@@ -4,6 +4,8 @@ Take quick notes in the VS Code’s bottom panel.
 
 **[Install from Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sapegin.notebox)**
 
+[![Washing your code. A book on clean code for frontend developers](https://sapegin.me/images/washing-code-github.jpg)](https://sapegin.me/book/)
+
 ## How it works?
 
 Open the bottom panel, and select **Notes**:
