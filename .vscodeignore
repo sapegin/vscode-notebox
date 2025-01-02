@@ -9,3 +9,4 @@ samples/**
 Contributing.md
 tsconfig.json
 prettier.config.cjs
+eslint.config.mjs
