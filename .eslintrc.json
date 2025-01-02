@@ -1,5 +1,0 @@
-{
-  "extends": ["tamia/typescript"],
-  "rules": {},
-  "overrides": []
-}

@@ -14,7 +14,7 @@
 
   // eslint-disable-next-line no-undef
   const vscode = acquireVsCodeApi();
-  const textarea = document.getElementById('textarea');
+  const textarea = document.querySelector('#textarea');
 
   const submitTextareaValue = debounce(() => {
     vscode.postMessage({

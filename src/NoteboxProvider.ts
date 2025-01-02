@@ -6,9 +6,9 @@ import {
   type Webview,
 } from 'vscode';
 import { mkdirp } from 'mkdirp';
-import { dirname } from 'path';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { writeFile } from 'fs/promises';
+import path from 'node:path';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { writeFile } from 'node:fs/promises';
 import { logMessage } from './debug';
 
 export default class NoteboxProvider implements WebviewViewProvider {
@@ -100,7 +100,7 @@ export default class NoteboxProvider implements WebviewViewProvider {
       return;
     }
 
-    mkdirp(dirname(this.fullPath));
+    mkdirp(path.dirname(this.fullPath));
     writeFileSync(this.fullPath, '');
   }
 
@@ -112,7 +112,7 @@ export default class NoteboxProvider implements WebviewViewProvider {
   /** Read the notes file, creates if needed */
   private readNotesFile(): string {
     this.ensureNotesFile();
-    return readFileSync(this.fullPath, 'utf-8');
+    return readFileSync(this.fullPath, 'utf8');
   }
 
   /** Save the notes file */
@@ -120,9 +120,9 @@ export default class NoteboxProvider implements WebviewViewProvider {
     logMessage('Saving notes...');
     try {
       await writeFile(this.fullPath, this.value);
-    } catch (err) {
-      if (err instanceof Error) {
-        window.showErrorMessage(`Cannot save notes: ${err.message}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        window.showErrorMessage(`Cannot save notes: ${error.message}`);
       }
     }
   };
