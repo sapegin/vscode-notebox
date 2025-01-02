@@ -1,8 +1,12 @@
 import { window } from 'vscode';
+import packageJson from '../package.json';
 
-const debug = window.createOutputChannel('Notebox');
+const debug = window.createOutputChannel(packageJson.displayName);
 
-export function logMessage(...messages: any[]) {
+/**
+ * Log debug message or data
+ */
+export function logMessage(...messages: unknown[]) {
   debug.appendLine(
     messages
       .map((x) =>
