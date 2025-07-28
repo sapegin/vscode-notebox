@@ -2,7 +2,7 @@
 
 Take quick notes in the VS Code’s bottom panel.
 
-**[Install from Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sapegin.notebox)**
+**Install from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sapegin.notebox) or [Open VSX Registry](https://open-vsx.org/extension/sapegin/notebox)**
 
 [![Washing your code. A book on clean code for frontend developers](https://sapegin.me/images/washing-code-github.jpg)](https://sapegin.me/book/)
 

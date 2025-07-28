@@ -76,6 +76,7 @@
     "test": "npm run esbuild-base && tsc --noEmit",
     "posttest": "npm run format",
     "publish": "vsce publish",
+    "publish:ovsx": "npx ovsx publish",
     "prepare": "husky"
   },
   "devDependencies": {
