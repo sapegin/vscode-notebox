@@ -71,7 +71,7 @@
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "watch": "npm run esbuild-watch",
     "lint": "eslint . --cache --fix",
-    "format": "prettier --log-level warn --write \"**/*.{js,mjs,cjs,ts,tsx,md}\"",
+    "format": "prettier --log-level warn --write \"**/*.{js,mjs,cjs,ts,tsx,json,md}\"",
     "pretest": "npm run lint",
     "test": "npm run esbuild-base && tsc --noEmit",
     "posttest": "npm run format",
@@ -82,19 +82,17 @@
   "devDependencies": {
     "@types/node": "^22.10.3",
     "@types/vscode": "^1.75.0",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@typescript-eslint/parser": "^8.19.0",
-    "@vscode/vsce": "^3.2.1",
-    "esbuild": "^0.24.2",
-    "eslint": "^9.17.0",
-    "eslint-config-tamia": "^9.2.1",
+    "@vscode/vsce": "^3.6.2",
+    "esbuild": "^0.25.10",
+    "eslint": "^9.36.0",
+    "eslint-config-tamia": "^9.3.1",
     "husky": "^9.1.7",
-    "lint-staged": "^15.3.0",
-    "prettier": "^3.4.2",
-    "typescript": "^5.7.2"
+    "lint-staged": "^16.2.3",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
   },
   "lint-staged": {
-    "*.{js,mjs,cjs,ts,tsx,md}": "prettier --write",
+    "*.{js,mjs,cjs,ts,tsx,json,md}": "prettier --write",
     "*.{js,mjs,cjs,ts,tsx}": "eslint --cache --fix"
   }
 }
