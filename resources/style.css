@@ -31,6 +31,10 @@ body {
   letter-spacing: 0;
 }
 
+#textarea:disabled {
+  opacity: 0.75;
+}
+
 #textarea:focus {
   outline-color: var(--vscode-focusBorder);
 }
