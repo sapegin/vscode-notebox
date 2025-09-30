@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3
+
+- Remove mkdirp dependency.
+- Load the notes file asynchronously.
+- Add loading state.
+- Add aria-label to the textarea.
+
 ## 1.0.2
 
 - Update readme.
