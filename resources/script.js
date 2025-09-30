@@ -33,6 +33,7 @@
     switch (message.type) {
       // We receive the new value from the extension
       case 'extension->webview': {
+        textarea.disabled = false;
         textarea.value = message.value;
         break;
       }

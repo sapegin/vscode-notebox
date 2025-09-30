@@ -5,10 +5,8 @@ import {
   type WebviewView,
   type Webview,
 } from 'vscode';
-import { mkdirp } from 'mkdirp';
+import fs from 'node:fs';
 import path from 'node:path';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { writeFile } from 'node:fs/promises';
 import { logMessage } from './debug';
 
 export default class NoteboxProvider implements WebviewViewProvider {
@@ -27,7 +25,7 @@ export default class NoteboxProvider implements WebviewViewProvider {
     this.extensionUri = extensionUri;
     this.fullPath = notesUri.fsPath;
 
-    this.value = this.readNotesFile();
+    this.readNotesFile();
   }
 
   public resolveWebviewView(webviewView: WebviewView) {
@@ -88,38 +86,38 @@ export default class NoteboxProvider implements WebviewViewProvider {
 				<link href="${styleUri}" rel="stylesheet">
 			</head>
 			<body>
-				<textarea id="textarea">${this.value}</textarea>
+				<textarea id="textarea" disabled="disabled">Loading…</textarea>
 				<script src="${scriptUri}"/>
 			</body>
 			</html>`;
   }
 
-  /** Creates an empty notes file if it doesn't exists */
-  private ensureNotesFile(): void {
-    if (this.hasNotesFile()) {
-      return;
+  /** Read the notes file, creates if needed */
+  private readNotesFile = async () => {
+    try {
+      // First, try to read the file
+      const content = await fs.promises.readFile(this.fullPath, 'utf8');
+      this.value = content;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        // If file doesn't exists, create an empty file
+        await fs.promises.mkdir(path.dirname(this.fullPath), {
+          recursive: true,
+        });
+        await fs.promises.writeFile(this.fullPath, this.value);
+      }
+      throw error;
     }
 
-    mkdirp(path.dirname(this.fullPath));
-    writeFileSync(this.fullPath, '');
-  }
-
-  /** Returns true if the notes file already exists */
-  private hasNotesFile(): boolean {
-    return existsSync(this.fullPath);
-  }
-
-  /** Read the notes file, creates if needed */
-  private readNotesFile(): string {
-    this.ensureNotesFile();
-    return readFileSync(this.fullPath, 'utf8');
-  }
+    // Show the text in the textarea
+    this.setTextareaValue(this.value);
+  };
 
   /** Save the notes file */
   private saveNotesFile = async () => {
     logMessage('Saving notes...');
     try {
-      await writeFile(this.fullPath, this.value);
+      await fs.promises.writeFile(this.fullPath, this.value);
     } catch (error) {
       if (error instanceof Error) {
         window.showErrorMessage(`Cannot save notes: ${error.message}`);
