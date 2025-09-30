@@ -86,7 +86,7 @@ export default class NoteboxProvider implements WebviewViewProvider {
 				<link href="${styleUri}" rel="stylesheet">
 			</head>
 			<body>
-				<textarea id="textarea" disabled="disabled">Loading…</textarea>
+				<textarea id="textarea" disabled="disabled" aria-label="Notes">Loading…</textarea>
 				<script src="${scriptUri}"/>
 			</body>
 			</html>`;
