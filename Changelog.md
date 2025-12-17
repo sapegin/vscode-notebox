@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- Fix the panel getting suck in loading state
+
 ## 1.0.3
 
 - Remove mkdirp dependency.

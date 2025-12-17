@@ -24,11 +24,9 @@ export default class NoteboxProvider implements WebviewViewProvider {
   public constructor(extensionUri: Uri, notesUri: Uri) {
     this.extensionUri = extensionUri;
     this.fullPath = notesUri.fsPath;
-
-    this.readNotesFile();
   }
 
-  public resolveWebviewView(webviewView: WebviewView) {
+  public async resolveWebviewView(webviewView: WebviewView) {
     this.webviewView = webviewView;
 
     webviewView.webview.options = {
@@ -38,17 +36,22 @@ export default class NoteboxProvider implements WebviewViewProvider {
 
     webviewView.webview.html = this.getHtml(webviewView.webview);
 
-    webviewView.webview.onDidReceiveMessage((event) => {
-      logMessage('Received event from WebView:', event);
-      switch (event.type) {
-        // Take the value from the WebView and save the notes file
-        case 'webview->extension': {
-          this.value = event.data;
-          this.saveNotesFile();
-          break;
+    await this.readNotesFile();
+    this.setTextareaValue(this.value);
+
+    webviewView.webview.onDidReceiveMessage(
+      (event: { type: string; data?: string }) => {
+        logMessage('Received event from WebView:', event);
+        switch (event.type) {
+          // Take the value from the WebView and save the notes file
+          case 'webview->extension': {
+            this.value = event.data ?? '';
+            this.saveNotesFile();
+            break;
+          }
         }
-      }
-    });
+      },
+    );
 
     webviewView.onDidChangeVisibility(() => {
       // Set the textarea value when the panel gets focus
@@ -108,9 +111,6 @@ export default class NoteboxProvider implements WebviewViewProvider {
       }
       throw error;
     }
-
-    // Show the text in the textarea
-    this.setTextareaValue(this.value);
   };
 
   /** Save the notes file */
