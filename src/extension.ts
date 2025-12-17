@@ -1,6 +1,6 @@
-import { Uri, window, type ExtensionContext } from 'vscode';
-import NoteboxProvider from './NoteboxProvider';
+import { type ExtensionContext, Uri, window } from 'vscode';
 import { logMessage } from './debug';
+import NoteboxProvider from './NoteboxProvider';
 
 /** Filename where to save notes, in the extension's global storage */
 const notesFilename = 'notes.txt';

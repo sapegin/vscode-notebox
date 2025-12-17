@@ -1,12 +1,12 @@
-import {
-  window,
-  Uri,
-  type WebviewViewProvider,
-  type WebviewView,
-  type Webview,
-} from 'vscode';
 import fs from 'node:fs';
 import path from 'node:path';
+import {
+  Uri,
+  type Webview,
+  type WebviewView,
+  type WebviewViewProvider,
+  window,
+} from 'vscode';
 import { logMessage } from './debug';
 
 export default class NoteboxProvider implements WebviewViewProvider {
@@ -46,7 +46,7 @@ export default class NoteboxProvider implements WebviewViewProvider {
           // Take the value from the WebView and save the notes file
           case 'webview->extension': {
             this.value = event.data ?? '';
-            this.saveNotesFile();
+            void this.saveNotesFile();
             break;
           }
         }
@@ -86,11 +86,11 @@ export default class NoteboxProvider implements WebviewViewProvider {
 				<meta charset="UTF-8">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Security-Policy" content="default-src 'none'; https:; script-src ${webview.cspSource}; style-src ${webview.cspSource};">
-				<link href="${styleUri}" rel="stylesheet">
+				<link href="${styleUri.toString()}" rel="stylesheet">
 			</head>
 			<body>
 				<textarea id="textarea" disabled="disabled" aria-label="Notes">Loading…</textarea>
-				<script src="${scriptUri}"/>
+				<script src="${scriptUri.toString()}"/>
 			</body>
 			</html>`;
   }
