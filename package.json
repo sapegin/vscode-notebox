@@ -59,7 +59,8 @@
         {
           "type": "webview",
           "id": "notebox.noteboxView",
-          "name": "notebox"
+          "name": "notebox",
+          "icon": "$(note)"
         }
       ]
     }

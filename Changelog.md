@@ -3,6 +3,7 @@
 ## 1.0.4
 
 - Fix the panel getting suck in loading state
+- Add missing icon property
 
 ## 1.0.3
 
