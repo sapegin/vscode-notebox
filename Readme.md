@@ -1,5 +1,7 @@
 # Notebox 📝
 
+**[Repository moved](https://github.com/sapegin/raccoon-vscode/tree/main/extensions/notebox)**
+
 Take quick notes in the VS Code’s bottom panel.
 
 **Install from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sapegin.notebox) or [Open VSX Registry](https://open-vsx.org/extension/sapegin/notebox)**
